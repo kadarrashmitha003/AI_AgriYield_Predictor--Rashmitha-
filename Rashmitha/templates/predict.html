@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Predict Crop - AgriYield Predictor{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-calculator"></i> Crop Prediction Form
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <p class="text-muted mb-4">
+                        Enter your soil and weather conditions to get AI-powered crop recommendations.
+                    </p>
+                    
+                    <form id="predictionForm" action="{{ url_for('predict_crop') }}" method="POST">
+                        <div class="row g-3">
+                            <!-- Nutrients Section -->
+                            <div class="col-12">
+                                <h5 class="border-bottom pb-2 mb-3">
+                                    <i class="fas fa-flask text-success"></i> Soil Nutrients
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="nitrogen" class="form-label">Nitrogen (N) Level</label>
+                                <input type="number" class="form-control" id="nitrogen" name="nitrogen" 
+                                       min="0" max="140" step="1" value="90" required>
+                                <div class="form-text">Range: 0-140</div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="phosphorus" class="form-label">Phosphorus (P) Level</label>
+                                <input type="number" class="form-control" id="phosphorus" name="phosphorus" 
+                                       min="5" max="145" step="1" value="40" required>
+                                <div class="form-text">Range: 5-145</div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="potassium" class="form-label">Potassium (K) Level</label>
+                                <input type="number" class="form-control" id="potassium" name="potassium" 
+                                       min="5" max="205" step="1" value="40" required>
+                                <div class="form-text">Range: 5-205</div>
+                            </div>
+
+                            <!-- Weather Section -->
+                            <div class="col-12 mt-4">
+                                <h5 class="border-bottom pb-2 mb-3">
+                                    <i class="fas fa-cloud-sun text-success"></i> Weather Conditions
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="temperature" class="form-label">Temperature (°C)</label>
+                                <input type="number" class="form-control" id="temperature" name="temperature" 
+                                       min="8" max="44" step="0.1" value="25" required>
+                                <div class="form-text">Range: 8-44°C</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="humidity" class="form-label">Humidity (%)</label>
+                                <input type="number" class="form-control" id="humidity" name="humidity" 
+                                       min="14" max="100" step="0.1" value="80" required>
+                                <div class="form-text">Range: 14-100%</div>
+                            </div>
+
+                            <!-- Soil & Rainfall -->
+                            <div class="col-12 mt-4">
+                                <h5 class="border-bottom pb-2 mb-3">
+                                    <i class="fas fa-tint text-success"></i> Soil & Rainfall
+                                </h5>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="ph" class="form-label">Soil pH Level</label>
+                                <input type="number" class="form-control" id="ph" name="ph" 
+                                       min="3" max="10" step="0.1" value="6.5" required>
+                                <div class="form-text">Range: 3-10</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="rainfall" class="form-label">Rainfall (mm)</label>
+                                <input type="number" class="form-control" id="rainfall" name="rainfall" 
+                                       min="20" max="300" step="0.1" value="200" required>
+                                <div class="form-text">Range: 20-300mm</div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-success btn-lg w-100" id="predictBtn">
+                                    <i class="fas fa-calculator"></i> Predict Best Crop
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Loading Spinner -->
+                    <div id="loadingSpinner" class="text-center mt-4" style="display: none;">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Analyzing your data... This may take a few seconds.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Data Cards -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h5 class="mb-3">Try Sample Data:</h5>
+                </div>
+                <div class="col-md-4">
+                    <div class="card sample-card" data-sample="rice">
+                        <div class="card-body text-center">
+                            <h6>🌾 Rice Conditions</h6>
+                            <small class="text-muted">High rainfall, warm temperature</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card sample-card" data-sample="maize">
+                        <div class="card-body text-center">
+                            <h6>🌽 Maize Conditions</h6>
+                            <small class="text-muted">Moderate rainfall, warm temperature</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card sample-card" data-sample="chickpea">
+                        <div class="card-body text-center">
+                            <h6>🥜 Chickpea Conditions</h6>
+                            <small class="text-muted">Low rainfall, cool temperature</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

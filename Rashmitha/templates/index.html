@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Smart Farming Starts Here
+                    </h1>
+                    <p class="hero-subtitle">
+                        AI-powered crop recommendations to maximize your yield and optimize resources. 
+                        Get personalized insights based on your soil and weather conditions.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>99%</h3>
+                            <p>Accuracy</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>22+</h3>
+                            <p>Crops</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>AI</h3>
+                            <p>Powered</p>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="{{ url_for('predict') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-rocket"></i> Get Started
+                        </a>
+                        <a href="#how-it-works" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-play-circle"></i> See How It Works
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-visual">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-seedling"></i>
+                        <p>Crop Prediction</p>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-chart-line"></i>
+                        <p>Yield Optimization</p>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fas fa-cloud-sun"></i>
+                        <p>Weather Analysis</p>
+                    </div>
+                    <div class="main-visual">
+                        <img src="{{ url_for('static', filename='images/farmer.png') }}" 
+                             alt="Smart Farming" class="img-fluid"
+                             onerror="this.src='https://cdn-icons-png.flaticon.com/512/2921/2921222.png'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Why Farmers Love AgriYield</h2>
+                <p class="section-subtitle">Transforming agriculture with cutting-edge technology</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>AI-Powered Insights</h4>
+                    <p>Advanced machine learning algorithms analyze soil conditions and weather patterns to recommend the perfect crops for your land.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Instant Results</h4>
+                    <p>Get crop recommendations in seconds. No complex setup, no waiting - just accurate predictions when you need them.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h4>Mobile Friendly</h4>
+                    <p>Access AgriYield from any device. Perfect for farmers in the field who need quick insights on the go.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="how-it-works-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">How AgriYield Works</h2>
+                <p class="section-subtitle">Three simple steps to better farming decisions</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4>Enter Your Conditions</h4>
+                        <p>Provide basic information about your soil nutrients, temperature, humidity, and rainfall patterns.</p>
+                        <div class="step-features">
+                            <span><i class="fas fa-check"></i> Soil Nutrients (N-P-K)</span>
+                            <span><i class="fas fa-check"></i> Weather Data</span>
+                            <span><i class="fas fa-check"></i> Location Factors</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4>AI Analysis</h4>
+                        <p>Our advanced algorithms process your data against thousands of successful farming patterns.</p>
+                        <div class="step-features">
+                            <span><i class="fas fa-check"></i> Pattern Recognition</span>
+                            <span><i class="fas fa-check"></i> Weather Correlation</span>
+                            <span><i class="fas fa-check"></i> Soil Compatibility</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h4>Get Recommendations</h4>
+                        <p>Receive personalized crop suggestions with confidence scores and ideal growing conditions.</p>
+                        <div class="step-features">
+                            <span><i class="fas fa-check"></i> Top 3 Crops</span>
+                            <span><i class="fas fa-check"></i> Confidence Scores</span>
+                            <span><i class="fas fa-check"></i> Growing Tips</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Crops Section -->
+<section class="crops-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Supported Crops</h2>
+                <p class="section-subtitle">We provide recommendations for a wide variety of crops</p>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="crop-item">
+                    <i class="fas fa-apple-alt"></i>
+                    <span>Apple</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="crop-item">
+                    <i class="fas fa-seedling"></i>
+                    <span>Banana</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="crop-item">
+                    <i class="fas fa-leaf"></i>
+                    <span>Rice</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="crop-item">
+                    <i class="fas fa-wheat"></i>
+                    <span>Maize</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="crop-item">
+                    <i class="fas fa-pepper"></i>
+                    <span>Chickpea</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="crop-item">
+                    <i class="fas fa-plus"></i>
+                    <span>16 More</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Section -->
+<section class="testimonial-section py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left fa-3x mb-4 opacity-50"></i>
+                    <p class="testimonial-text fs-4">
+                        "AgriYield helped me increase my crop yield by 30%! The AI recommendations were spot-on for my soil conditions."
+                    </p>
+                    <div class="testimonial-author">
+                        <h5 class="mb-1">Rajesh Kumar</h5>
+                        <p class="mb-0 opacity-75">Farm Owner, Punjab</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="cta-title mb-4">Ready to Transform Your Farming?</h2>
+                <p class="cta-subtitle mb-4">Join thousands of farmers who are already using AI to make better decisions</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('predict') }}" class="btn btn-primary btn-lg me-3">
+                        <i class="fas fa-play"></i> Start Predicting Now
+                    </a>
+                    <a href="{{ url_for('about') }}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                </div>
+                <div class="cta-features mt-4">
+                    <span><i class="fas fa-check"></i> No credit card required</span>
+                    <span><i class="fas fa-check"></i> Free forever</span>
+                    <span><i class="fas fa-check"></i> Instant results</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

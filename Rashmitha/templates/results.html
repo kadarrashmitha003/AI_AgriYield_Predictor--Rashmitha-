@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction Results - AgriYield Predictor{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            {% if result.success %}
+            <!-- Success Results -->
+            <div class="card shadow border-success">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-check-circle"></i> Prediction Results
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Main Prediction -->
+                    <div class="text-center mb-5">
+                        <div class="result-icon mb-3">
+                            <i class="fas fa-seedling fa-4x text-success"></i>
+                        </div>
+                        <h2 class="text-success">🌱 {{ result.predicted_crop.title() }}</h2>
+                        <p class="lead">Recommended Crop for Your Conditions</p>
+                        <div class="confidence-badge">
+                            <span class="badge bg-success fs-6">{{ result.confidence }}% Confidence</span>
+                        </div>
+                    </div>
+
+                    <!-- Top Recommendations -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h5 class="border-bottom pb-2">Top 3 Recommendations</h5>
+                        </div>
+                        {% for crop in result.top_recommendations %}
+                        <div class="col-md-4 mt-3">
+                            <div class="card recommendation-card 
+                                {% if crop.name == result.predicted_crop %}
+                                    border-success
+                                {% endif %}">
+                                <div class="card-body text-center">
+                                    <h6>{{ crop.name.title() }}</h6>
+                                    <div class="confidence-meter mt-2">
+                                        <div class="progress">
+                                            <div class="progress-bar 
+                                                {% if crop.confidence > 70 %}
+                                                    bg-success
+                                                {% elif crop.confidence > 40 %}
+                                                    bg-warning
+                                                {% else %}
+                                                    bg-info
+                                                {% endif %}" 
+                                                style="width: {{ crop.confidence }}%">
+                                                {{ crop.confidence }}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Input Summary -->
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Your Input Conditions</h6>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <td>Nitrogen (N):</td>
+                                            <td><strong>{{ result.input_data.N }}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phosphorus (P):</td>
+                                            <td><strong>{{ result.input_data.P }}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Potassium (K):</td>
+                                            <td><strong>{{ result.input_data.K }}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Temperature:</td>
+                                            <td><strong>{{ result.input_data.temperature }}°C</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity:</td>
+                                            <td><strong>{{ result.input_data.humidity }}%</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>pH Level:</td>
+                                            <td><strong>{{ result.input_data.ph }}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rainfall:</td>
+                                            <td><strong>{{ result.input_data.rainfall }}mm</strong></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Ideal Conditions for {{ result.predicted_crop.title() }}</h6>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-sm">
+                                        <tr>
+                                            <td>Temperature:</td>
+                                            <td>
+                                                <strong>{{ result.ideal_conditions.temperature.mean }}°C</strong>
+                                                <br>
+                                                <small>
+                                                    ({{ result.ideal_conditions.temperature.min }}°C - 
+                                                    {{ result.ideal_conditions.temperature.max }}°C)
+                                                </small>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rainfall:</td>
+                                            <td>
+                                                <strong>{{ result.ideal_conditions.rainfall.mean }}mm</strong>
+                                                <br>
+                                                <small>
+                                                    ({{ result.ideal_conditions.rainfall.min }}mm - 
+                                                    {{ result.ideal_conditions.rainfall.max }}mm)
+                                                </small>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>pH Level:</td>
+                                            <td>
+                                                <strong>{{ result.ideal_conditions.ph.mean }}</strong>
+                                                <br>
+                                                <small>
+                                                    ({{ result.ideal_conditions.ph.min }} - 
+                                                    {{ result.ideal_conditions.ph.max }})
+                                                </small>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <a href="{{ url_for('predict') }}" class="btn btn-success me-2">
+                                <i class="fas fa-redo"></i> New Prediction
+                            </a>
+                            <a href="{{ url_for('home') }}" class="btn btn-outline-success">
+                                <i class="fas fa-home"></i> Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <!-- Error Results -->
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-exclamation-triangle"></i> Prediction Error
+                    </h3>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <div class="error-icon mb-3">
+                        <i class="fas fa-times-circle fa-4x text-danger"></i>
+                    </div>
+                    <h4 class="text-danger">Something went wrong</h4>
+                    <p class="text-muted">{{ result.error }}</p>
+                    <a href="{{ url_for('predict') }}" class="btn btn-danger mt-3">
+                        <i class="fas fa-redo"></i> Try Again
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}About - AgriYield Predictor{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-info-circle"></i> About AgriYield Predictor
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <h4 class="text-success mb-4">Revolutionizing Agriculture with AI</h4>
+                    
+                    <p class="lead">
+                        AgriYield Predictor is an intelligent system that uses machine learning 
+                        to recommend the most suitable crops based on soil and weather conditions.
+                    </p>
+
+                    <div class="row mt-5">
+                        <div class="col-md-6">
+                            <h5 class="border-bottom pb-2">🌱 Our Mission</h5>
+                            <p>
+                                To empower farmers with data-driven insights for better crop selection, 
+                                increased yields, and sustainable farming practices.
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="border-bottom pb-2">🎯 Our Vision</h5>
+                            <p>
+                                A world where every farming decision is supported by artificial 
+                                intelligence for optimal agricultural productivity.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h5 class="border-bottom pb-2">🔬 Technology Stack</h5>
+                            <div class="row text-center mt-3">
+                                <div class="col-md-3 mb-3">
+                                    <div class="tech-card p-3">
+                                        <i class="fab fa-python fa-2x text-primary mb-2"></i>
+                                        <h6>Python</h6>
+                                        <small class="text-muted">Machine Learning</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="tech-card p-3">
+                                        <i class="fas fa-brain fa-2x text-success mb-2"></i>
+                                        <h6>Random Forest</h6>
+                                        <small class="text-muted">AI Algorithm</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="tech-card p-3">
+                                        <i class="fab fa-html5 fa-2x text-danger mb-2"></i>
+                                        <h6>HTML/CSS/JS</h6>
+                                        <small class="text-muted">Frontend</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="tech-card p-3">
+                                        <i class="fab fa-bootstrap fa-2x text-purple mb-2"></i>
+                                        <h6>Bootstrap</h6>
+                                        <small class="text-muted">UI Framework</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h5 class="border-bottom pb-2">📊 Data Sources</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-database text-success me-2"></i>
+                                    Kaggle Crop Recommendation Dataset
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-database text-success me-2"></i>
+                                    Agricultural research data
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-database text-success me-2"></i>
+                                    Weather and soil condition data
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <a href="{{ url_for('predict') }}" class="btn btn-success btn-lg">
+                                <i class="fas fa-play-circle"></i> Try It Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
