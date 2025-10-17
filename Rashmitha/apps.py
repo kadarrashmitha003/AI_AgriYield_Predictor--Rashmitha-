@@ -331,8 +331,9 @@ def load_data():
     """Load and create comprehensive crop dataset from CSV file"""
     try:
         # Load data from the provided CSV file path
-        file_path = r"https://github.com/kadarrashmitha003/AI_AgriYield_Predictor--Rashmitha-/blob/main/Rashmitha/raw%20data/Crop_recommendation.csv"
+        file_path = "https://raw.githubusercontent.com/kadarrashmitha003/AI_AgriYield_Predictor--Rashmitha-/main/Rashmitha/raw%20data/Crop_recommendation.csv"
         df = pd.read_csv(file_path)
+
         
         # Display dataset info for debugging
         st.sidebar.markdown("### Dataset Info")
@@ -1018,3 +1019,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
